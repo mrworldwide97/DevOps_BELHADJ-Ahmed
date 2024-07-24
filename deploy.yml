@@ -1,0 +1,30 @@
+- name: Build and deploy Docker image
+  hosts: webserver
+  become: yes
+
+  tasks:
+    - name: Copy Dockerfile to remote
+      copy:
+        src: ./Dockerfile  # Chemin absolu ou relatif vers le Dockerfile
+        dest: /home/ubuntu/Dockerfile
+
+    - name: Copy app directory to remote
+      copy:
+        src: app/  # Chemin absolu ou relatif vers le répertoire 'app'
+        dest: /home/ubuntu/app/
+
+    - name: Build Docker image
+      docker_image:
+        name: my-webserver
+        source: build  # <-- add
+        build:
+          path: /home/ubuntu         # <-- add
+        tag: latest
+
+    - name: Run Docker container
+      docker_container:
+        name: webserver
+        image: my-webserver:latest
+        state: started
+        ports:
+          - "80:80"
