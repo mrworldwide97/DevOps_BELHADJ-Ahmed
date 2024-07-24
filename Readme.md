@@ -7,4 +7,5 @@
 Exécutez le script 'run.sh' qui exécutera le code Terraform puis les playbooks Ansible (si vous ne pouvez pas l'exécuter, exécutez cette commande 'chmod +x ./run.sh').
 
 Vous pouvez accéder au serveur dans votre navigateur en utilisant l'adresse IP dans ip_address.txt.
+https://github.com/mrworldwide97/DevOps_BELHADJ-Ahmed
 
